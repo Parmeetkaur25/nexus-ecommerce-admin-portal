@@ -1,57 +1,71 @@
-
-import { useParams } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
-import { getProductById } from '../../services/productService'
-import useCart from '../../hooks/useCart'
+import { useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { getProductById } from "../../services/productService";
+import useCart from "../../hooks/useCart";
+import "../../style/ProductDetails.css";
 
 function ProductDetails() {
-  const { addToCart } = useCart()
-  const { id } = useParams()
+  const { addToCart } = useCart();
+  const { id } = useParams();
 
-  const { data: product, isLoading, isError, error } = useQuery({
-  
-    queryKey: ['product', id],
-
-   
+  const {
+    data: product,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["product", id],
     queryFn: () => getProductById(id),
-  })
-
-  const handleAddToCart = () => {
-    console.log(`Added "${product.title}" to cart (cart logic comes in Step 7)`)
-  }
+  });
 
   if (isLoading) {
-    return <p>Loading product...</p>
+    return <h2 className="loading">Loading Product...</h2>;
   }
 
   if (isError) {
-    return <p>Something went wrong: {error.message}</p>
+    return <h2 className="error">{error.message}</h2>;
   }
 
   return (
-    <div style={styles.container}>
-      <img src={product.thumbnail} alt={product.title} style={styles.image} />
-      <div style={styles.details}>
+    <div className="product-details-container">
+      <div className="product-image-box">
+        <img
+          src={product.thumbnail}
+          alt={product.title}
+          className="product-image"
+        />
+      </div>
+
+      <div className="product-info">
+        <span className="product-category">
+          {product.category}
+        </span>
+
         <h1>{product.title}</h1>
-        <p style={styles.category}>{product.category}</p>
-        <p>{product.description}</p>
-        <p style={styles.price}>${product.price}</p>
-        <p>⭐ {product.rating?.toFixed(1) ?? 'N/A'}</p>
-        <button onClick={handleAddToCart} style={styles.button}>
-          Add to Cart
+
+        <div className="rating-price">
+          <span className="rating">
+            ⭐ {product.rating?.toFixed(1)}
+          </span>
+
+          <span className="price">
+            ${product.price}
+          </span>
+        </div>
+
+        <p className="description">
+          {product.description}
+        </p>
+
+        <button
+          className="add-cart-btn"
+          onClick={() => addToCart(product)}
+        >
+          🛒 Add to Cart
         </button>
       </div>
     </div>
-  )
+  );
 }
 
-const styles = {
-  container: { display: 'flex', gap: '2rem', flexWrap: 'wrap' },
-  image: { width: '300px', height: '300px', objectFit: 'contain' },
-  details: { flex: 1, minWidth: '250px' },
-  category: { color: '#666' },
-  price: { fontSize: '1.5rem', fontWeight: 'bold' },
-  button: { padding: '0.75rem 1.5rem', cursor: 'pointer', fontSize: '1rem' },
-}
-
-export default ProductDetails
+export default ProductDetails;

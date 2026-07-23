@@ -1,0 +1,178 @@
+/* ---------- Full Page ---------- */
+
+.login-page{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    linear-gradient(135deg,#dae5ff,#c6c3ff);
+
+    padding:20px;
+
+}
+
+/* ---------- Card ---------- */
+
+.login-card{
+
+    width:420px;
+
+    background:white;
+
+    padding:50px 40px;
+
+    border-radius:22px;
+
+    text-align:center;
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.18);
+
+    animation:fadeUp .7s ease;
+
+}
+
+/* ---------- Logo ---------- */
+
+.login-logo{
+
+    width:85px;
+    height:85px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:#EEF4FF;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:42px;
+
+    margin-bottom:25px;
+
+}
+
+/* ---------- Heading ---------- */
+
+.login-card h1{
+
+    margin:0;
+
+    color:#111827;
+
+    font-size:34px;
+
+    font-weight:700;
+
+}
+
+.login-card p{
+
+    margin-top:14px;
+
+    color:#6B7280;
+
+    line-height:1.7;
+
+    font-size:16px;
+
+}
+
+/* ---------- Button ---------- */
+
+.login-btn{
+
+    width:100%;
+
+    margin-top:35px;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:
+    linear-gradient(135deg,#2563EB,#4F46E5);
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+.login-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 18px 35px rgba(37,99,235,.35);
+
+}
+
+/* ---------- Note ---------- */
+
+.login-note{
+
+    margin-top:22px;
+
+    font-size:14px;
+
+    color:#9CA3AF;
+
+}
+
+/* ---------- Animation ---------- */
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ---------- Responsive ---------- */
+
+@media(max-width:500px){
+
+.login-card{
+
+    width:100%;
+
+    padding:35px 25px;
+
+}
+
+.login-card h1{
+
+    font-size:28px;
+
+}
+
+}

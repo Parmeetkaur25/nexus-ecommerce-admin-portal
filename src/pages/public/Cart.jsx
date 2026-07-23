@@ -1,98 +1,139 @@
-
-import { Link } from 'react-router-dom'
-import useCart from '../../hooks/useCart'
+import { Link } from "react-router-dom";
+import useCart from "../../hooks/useCart";
+import "../../style/Cart.css";
 
 function Cart() {
-  const { items, removeFromCart, increaseQuantity, decreaseQuantity, clearCart } = useCart()
+  const {
+    items,
+    removeFromCart,
+    increaseQuantity,
+    decreaseQuantity,
+    clearCart,
+  } = useCart();
 
-  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0)
+  const totalItems = items.reduce(
+    (sum, item) => sum + item.quantity,
+    0
+  );
 
   const totalPrice = items
     .reduce((sum, item) => sum + item.price * item.quantity, 0)
-    .toFixed(2)
-
+    .toFixed(2);
 
   if (items.length === 0) {
     return (
-      <div>
-        <h1>Your Cart</h1>
-        <p>Your cart is empty.</p>
-        <Link to="/products">Browse products</Link>
+      <div className="empty-cart">
+        <div className="empty-card">
+          <h1>🛒 Your Cart is Empty</h1>
+          <p>
+            Looks like you haven't added any products yet.
+          </p>
+
+          <Link to="/products" className="shop-btn">
+            Continue Shopping
+          </Link>
+        </div>
       </div>
-    )
+    );
   }
 
   return (
-    <div>
-      <h1>Your Cart</h1>
+    <div className="cart-page">
 
-      <div style={styles.list}>
-        {items.map((item) => (
-          <div key={item.id} style={styles.row}>
-            <img src={item.thumbnail} alt={item.title} style={styles.image} />
+      <h1 className="cart-title">Shopping Cart</h1>
 
-            <div style={styles.info}>
-              <p style={styles.title}>{item.title}</p>
-              <p style={styles.price}>${item.price} each</p>
-            </div>
+      <div className="cart-layout">
 
-            <div style={styles.quantityControls}>
-              <button onClick={() => decreaseQuantity(item.id)} style={styles.qtyButton}>
-                −
+        <div className="cart-items">
+
+          {items.map((item) => (
+            <div className="cart-card" key={item.id}>
+
+              <img
+                src={item.thumbnail}
+                alt={item.title}
+                className="cart-image"
+              />
+
+              <div className="cart-info">
+                <h3>{item.title}</h3>
+                <p>${item.price} each</p>
+              </div>
+
+              <div className="qty-box">
+
+                <button
+                  onClick={() =>
+                    decreaseQuantity(item.id)
+                  }
+                >
+                  −
+                </button>
+
+                <span>{item.quantity}</span>
+
+                <button
+                  onClick={() =>
+                    increaseQuantity(item.id)
+                  }
+                >
+                  +
+                </button>
+
+              </div>
+
+              <h3 className="item-total">
+                $
+                {(item.price * item.quantity).toFixed(
+                  2
+                )}
+              </h3>
+
+              <button
+                className="remove-btn"
+                onClick={() =>
+                  removeFromCart(item.id)
+                }
+              >
+                Remove
               </button>
-              <span style={styles.qtyValue}>{item.quantity}</span>
-              <button onClick={() => increaseQuantity(item.id)} style={styles.qtyButton}>
-                +
-              </button>
+
             </div>
+          ))}
 
-  
-            <p style={styles.lineTotal}>${(item.price * item.quantity).toFixed(2)}</p>
+        </div>
 
-            <button onClick={() => removeFromCart(item.id)} style={styles.removeButton}>
-              Remove
-            </button>
+        <div className="cart-summary">
+
+          <h2>Order Summary</h2>
+
+          <div className="summary-row">
+            <span>Items</span>
+            <span>{totalItems}</span>
           </div>
-        ))}
+
+          <div className="summary-row">
+            <span>Total</span>
+            <span>${totalPrice}</span>
+          </div>
+
+          <button className="checkout-btn">
+            Proceed to Checkout
+          </button>
+
+          <button
+            className="clear-btn"
+            onClick={clearCart}
+          >
+            Clear Cart
+          </button>
+
+        </div>
+
       </div>
 
-      <div style={styles.summary}>
-        <p>Total items: {totalItems}</p>
-        <p style={styles.grandTotal}>Total price: ${totalPrice}</p>
-        <button onClick={clearCart} style={styles.clearButton}>
-          Clear Cart
-        </button>
-      </div>
     </div>
-  )
+  );
 }
 
-const styles = {
-  list: { display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' },
-  row: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '1rem',
-    border: '1px solid #ddd',
-    borderRadius: '8px',
-    padding: '0.75rem',
-  },
-  image: { width: '60px', height: '60px', objectFit: 'contain' },
-  info: { flex: 1 },
-  title: { margin: 0, fontWeight: 'bold' },
-  price: { margin: 0, color: '#666', fontSize: '0.85rem' },
-  quantityControls: { display: 'flex', alignItems: 'center', gap: '0.5rem' },
-  qtyButton: { width: '28px', height: '28px', cursor: 'pointer' },
-  qtyValue: { minWidth: '20px', textAlign: 'center' },
-  lineTotal: { fontWeight: 'bold', minWidth: '70px', textAlign: 'right' },
-  removeButton: { cursor: 'pointer', color: 'red' },
-  summary: {
-    marginTop: '1.5rem',
-    paddingTop: '1rem',
-    borderTop: '2px solid #ddd',
-  },
-  grandTotal: { fontSize: '1.25rem', fontWeight: 'bold' },
-  clearButton: { marginTop: '0.5rem', padding: '0.5rem 1rem', cursor: 'pointer' },
-}
-
-export default Cart
+export default Cart;

@@ -1,0 +1,16 @@
+
+.skeleton-block {
+  background: linear-gradient(90deg, #eef0f3 25%, #f6f7f9 37%, #eef0f3 63%);
+  background-size: 400% 100%;
+  animation: skeleton-shimmer 1.4s ease infinite;
+  border-radius: var(--radius-sm);
+}
+
+.skeleton-image { width: 42px; height: 42px; }
+.skeleton-text-lg { width: 140px; height: 14px; }
+.skeleton-text-sm { width: 60px; height: 14px; }
+
+@keyframes skeleton-shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
