@@ -1,0 +1,238 @@
+
+
+.home {
+  width: 100%;
+  color: #000102;
+}
+
+
+.hero {
+  min-height: 85vh;
+  background: linear-gradient(135deg, #051538, #10296d);
+  color: rgb(255, 255, 255);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+  padding: 0 20px;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  color: white;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 35px;
+  color: #c8e8fb;
+}
+
+.hero-btn {
+  display: inline-block;
+  text-decoration: none;
+  background: white;
+  color: #2563eb;
+
+  padding: 14px 32px;
+  border-radius: 8px;
+
+  font-weight: 600;
+  transition: .3s;
+}
+
+.hero-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0,0,0,.2);
+}
+
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
+  gap: 30px;
+
+  max-width: 1200px;
+  margin: 80px auto;
+  padding: 0 20px;
+}
+
+.feature-card {
+  background: white;
+  padding: 35px 25px;
+
+  border-radius: 15px;
+
+  text-align: center;
+
+  font-size: 2rem;
+
+  box-shadow: 0 8px 30px rgba(0,0,0,.08);
+
+  transition: .3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+}
+
+.feature-card h3 {
+  margin: 18px 0;
+  font-size: 1.3rem;
+}
+
+.feature-card p {
+  color: #6b7280;
+  line-height: 1.6;
+  font-size: .95rem;
+}
+
+
+
+
+.why-us {
+  max-width: 900px;
+  margin: 90px auto;
+  padding: 0 20px;
+
+  text-align: center;
+}
+
+.why-us h2 {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+}
+
+.why-us p {
+  color: #6b7280;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+
+
+.reviews {
+  padding: 90px 20px;
+}
+
+.reviews h2 {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 2.4rem;
+}
+
+.review-grid {
+  max-width: 1200px;
+  margin: auto;
+
+  display: grid;
+  gap: 30px;
+
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+}
+
+.review-card {
+  background: white;
+
+  padding: 30px;
+
+  border-radius: 15px;
+
+  text-align: center;
+
+  box-shadow: 0 8px 25px rgba(0,0,0,.08);
+}
+
+.review-card p {
+  margin: 20px 0;
+  color: #6b7280;
+  line-height: 1.8;
+}
+
+
+.newsletter {
+  background: #cedeff;
+  color: white;
+
+  text-align: center;
+
+  padding: 80px 20px;
+}
+
+.newsletter h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.newsletter p {
+  margin-bottom: 35px;
+}
+
+.newsletter-box {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  gap: 15px;
+}
+
+.newsletter-box input {
+  width: 340px;
+  max-width: 100%;
+
+  padding: 15px;
+
+  border: none;
+  border-radius: 8px;
+
+  outline: none;
+}
+
+.newsletter-box button {
+  padding: 15px 28px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #111827;
+  color: white;
+
+  cursor: pointer;
+
+  transition: .3s;
+}
+
+.newsletter-box button:hover {
+  background: black;
+}
+
+
+
+@media (max-width:768px){
+
+.hero h1{
+font-size:2.4rem;
+}
+
+.hero p{
+font-size:1rem;
+}
+
+.categories h2,
+.best-products h2,
+.reviews h2,
+.newsletter h2,
+.why-us h2{
+font-size:2rem;
+}
+
+}
